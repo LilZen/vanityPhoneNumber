@@ -5,7 +5,7 @@
 # 1. Inputs - 10 digit phone number; check correct input
 # 2. Outputs - Vanity phone numbers; save best 5 in DynamoDB
 # 3. Assign numbers to letters for phone number indexed at [6-9] (2: ABC, 3: CDE, 4: GHI, 5: JKL, 6: MNO, 7: PQRS, 8: TUV, 9: WXYZ)
-# 4. Use word/dictionary API  to convert to vanity
+# 4. Use worddictionary.txt  or dictionary API to convert to vanity (try to find list of words with word lengths)
 # 
 
 # ASSUMPTIONS:
@@ -17,6 +17,8 @@
 # - No slang / misspelling
 
 phoneNumberLettersDict = {
+    '0' : "0" ,
+    '1' : "1" ,
     '2' : ["A","B","C"] ,
     '3' : ["D","E","F"] ,
     '4' : ["G","H","I"] ,
@@ -29,6 +31,7 @@ phoneNumberLettersDict = {
 
 phoneNumber = input(str("What is you phone number? (please enter with area code and no dashes)"))
 
+#Check to make sure number is valid and in correct format
 while phoneNumber.isdigit() == False or len(phoneNumber) != 10:
     phoneNumber = input("Only enter 10-digit phone number. Letters, spaces, and dashes are not accepted (ex 1234567890). Please re-enter phone number: ")
 
@@ -42,5 +45,4 @@ phoneNumberList[:0] = removeAreaCode
 #change phone number to list of list of possible letters
 letterList = []
 for number in phoneNumberList:
-    letterList = letterList + phoneNumberLettersDict[number]
-    
+    letterList = phoneNumberLettersDict[number] #Redo this -- need list of list or another way to arrange
