@@ -16,17 +16,15 @@
 # - Area Code is not converted
 # - No slang / misspelling
 
-letters = ""
-
 phoneNumberLettersDict = {
-    2 : ["A","B","C"] ,
-    3 : ["D","E","F"] ,
-    4 : ["G","H","I"] ,
-    5 : ["J","K","L"] ,
-    6 : ["M","N","O"] ,
-    7 : ["P","Q","R","S"] ,
-    8 : ["T","U","V"],
-    9 : ["W","X","Y","Z"]
+    '2' : ["A","B","C"] ,
+    '3' : ["D","E","F"] ,
+    '4' : ["G","H","I"] ,
+    '5' : ["J","K","L"] ,
+    '6' : ["M","N","O"] ,
+    '7' : ["P","Q","R","S"] ,
+    '8' : ["T","U","V"],
+    '9' : ["W","X","Y","Z"]
     }
 
 phoneNumber = input(str("What is you phone number? (please enter with area code and no dashes)"))
@@ -34,5 +32,15 @@ phoneNumber = input(str("What is you phone number? (please enter with area code 
 while phoneNumber.isdigit() == False or len(phoneNumber) != 10:
     phoneNumber = input("Only enter 10-digit phone number. Letters, spaces, and dashes are not accepted (ex 1234567890). Please re-enter phone number: ")
 
-print ("Thank you " + phoneNumber + " will be assigned vanity number")
+#remove area code - not part of vanity name
+removeAreaCode = phoneNumber[3::]
+
+#put phone number into a list 
+phoneNumberList = []
+phoneNumberList[:0] = removeAreaCode
+
+#change phone number to list of list of possible letters
+letterList = []
+for number in phoneNumberList:
+    letterList = letterList + phoneNumberLettersDict[number]
     
