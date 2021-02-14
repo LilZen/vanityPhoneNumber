@@ -16,6 +16,8 @@
 # - Area Code is not converted
 # - No slang / misspelling
 
+from nltk.corpus import words
+
 phoneNumberLettersDict = {
     '0' : "0" ,
     '1' : "1" ,
